@@ -1,5 +1,7 @@
 # CS4076 Event Driven Programming Project
 2nd year C++ project
+Written in C++
+Created in QT
 
 Labhaoise Mullins (20266928)
 
