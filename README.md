@@ -10,7 +10,6 @@ Labhaoise Mullins (20266928)
 
 # Implemented C++ concepts
 - Pointers
-- C++ References
 - Default parameters
 - Function templates
 - Initializer list
@@ -18,8 +17,8 @@ Labhaoise Mullins (20266928)
 - Inheritance
 - Namespaces
 - Vectors
-- Destructor
-- Overloaded operator
+- Destructors
+- Operator overloading
 - Header files (inclusion guards)
 - Friendship
 - Variables
