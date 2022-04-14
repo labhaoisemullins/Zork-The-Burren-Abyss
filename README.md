@@ -8,21 +8,19 @@ Created in QT
 Labhaoise Mullins (20266928)
 
 
-# C++ concepts to implement
+# Implemented C++ concepts
 - Pointers
 - C++ References
 - Default parameters
 - Function templates
 - Initializer list
-- Static class members
-- Copy constructors functions (deep, shallow)
+- Copy constructors
 - Inheritance
-- Vitual functions
-- Abstract classes
 - Namespaces
-- Operator overloading
+- Vectors
+- Destructor
+- Overloaded operator
 - Header files (inclusion guards)
-- Arrays
 - Friendship
-- Global variables
-- Private, Public, Protected
+- Variables
+- Private, Public, Private slots
