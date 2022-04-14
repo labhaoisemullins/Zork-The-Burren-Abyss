@@ -21,13 +21,11 @@ private:
 // We'll populate this in the class constructor
     static vector<string> validCommands;
 
-
 /* access specifier: accessible from outside the class */
 public:
     CommandWords();
     bool isCommand(string aString);
     void showAll();
 };
-
 
 #endif /* COMMANDWORDS_H_ */

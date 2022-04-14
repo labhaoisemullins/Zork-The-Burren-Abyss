@@ -8,7 +8,7 @@
 
 vector<string> CommandWords::validCommands;
 
-/* initializer list; initialise the command words. */
+/* Initializer List; initialise the command words. */
 CommandWords::CommandWords() {
     validCommands.push_back("go");
     validCommands.push_back("quit");
