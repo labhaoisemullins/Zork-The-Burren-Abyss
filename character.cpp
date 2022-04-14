@@ -7,7 +7,7 @@
 #include "character.h"  // include character header file
 #include <string>       // include string header
 
-/* initializer list */
+/* Initializer list */
 Character::Character(string description){
     itemsInCharacter.empty();
     this->description = description;
@@ -50,7 +50,10 @@ string Character::longDescription(){
      character += "\n      |       |";
      character += "\n      |       |\n";
 
-     character += "\nCharacter name: " + this->description + ".\n";
+     character += "\ncharacter name: " + this->description + ".\n";
+
+     string output = "";
+     output += "\ncarried weight: " + to_string(carriedWeight) + "g.\n";  // carried weight in grams
 
     if (itemsInCharacter.empty()){
         character += "\nyou're carrying no items.";
@@ -61,9 +64,10 @@ string Character::longDescription(){
             character += (*i).getLongDescription() + "\n";
         }
     }
-    return character;
+    return character + output;
 }
 
+/* find the item */
 Item Character::findItem(Item item){
     for (unsigned int i = 0; i < (unsigned int)itemsInCharacter.size(); i++){
         if (itemsInCharacter[i] == item){
@@ -73,57 +77,66 @@ Item Character::findItem(Item item){
 }
 
 int Character::findItemPos(Item item){
-    for (unsigned int i = 0; i < (unsigned int)itemsInCharacter.size(); i++)    {
+    for (unsigned int i = 0; i < (unsigned int)itemsInCharacter.size(); i++){
         if (itemsInCharacter[i] == item){
             return i;
-        }
+    }
     }
 }
 
+/* display the characters information
 string Character::viewCharacterInfo(){
     string output = "";
     output += longDescription();
     output += "\ncarried weight: " + to_string(carriedWeight) + "g.";
     return output;
-}
+}*/
 
+/* remove the item */
 void Character::removeItem(Item item) {
     itemsInCharacter.erase(itemsInCharacter.begin() + findItemPos(item));
 }
 
+/* check if the caveman is carrying too much weight */
 bool Character::isOverloaded(float maxWeight){
     if (carriedWeight > maxWeight){
-        return true;
+        return true;   /* character is carrying too much weight */
     }else{
-        return false;
+        return false;  /* character is carrying an okay weight */
     }
 }
 
+/* return resilience amount (*) */
 int Character::getResilience(){
     return resilience;
 }
 
+/* set the resilience */
 void Character::setResilience(int resilience){
     this->resilience = resilience;
 }
 
+/* decrement resilience */
 void Character::decrementResilience(){
     resilience--;
-
+/* increase resilience to 6(*) if health has more than one (+) */
     if (resilience < 0 && health > 1){
-        setResilience(10);
+        setResilience(6);  // 6 *
         decrementHealth();
     }
 }
 
+/* return health amount (+) */
 int Character::getHealth(){
     return health;
 }
 
+/* set the health */
 void Character::setHealth(int health){
     this->health = health;
 }
 
+/* decrement health */
 void Character::decrementHealth(){
     health--;
 }
