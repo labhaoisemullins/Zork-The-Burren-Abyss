@@ -12,12 +12,6 @@
 
 using namespace std;    // namespace
 
-/**int main(int argc, char *argv[]) {
-    ZorkUL temp;
-    temp.play();
-    return 0;
-} */
-
 ZorkUL::ZorkUL() {
     createRooms();
     srand(time(0)); // generates random numbers by seeding rand with a starting value
@@ -68,6 +62,7 @@ void ZorkUL::createRooms() {
 /* room ten = "The Terminus", last room in the cave; player wins if they reach this room */
     ten = new Room("The Terminus");
 
+    
 /* set the exits for each room (one-ten)*/
     //             (up, right, down, left)
       one->setExits(six, two, four, three);
@@ -81,8 +76,9 @@ void ZorkUL::createRooms() {
       nine->setExits(NULL, four, NULL, NULL);
       ten->setExits(NULL, ten, NULL, NULL);     // final room, you win if you enter it
 
+    
 /* push_back allows to add element to the vector, stores the room */
-      rooms.push_back(*one);
+      rooms.push_back(*one);  // points to room one
       rooms.push_back(*two);
       rooms.push_back(*three);
       rooms.push_back(*four);
@@ -93,31 +89,10 @@ void ZorkUL::createRooms() {
       rooms.push_back(*nine);
       rooms.push_back(*ten);
 
+    
 /* set the current room to the main room, The Cavern, (room one)*/
       currentRoom = one;
 }
-
-/*
-// Main play routine.  Loops until end of play.
-void ZorkUL::play() {
- printWelcome();
-
- // Enter the main command loop.  Here we repeatedly read commands and
- // execute them until the ZorkUL game is over.
-
- bool finished = false;
- while (!finished) {
-     // Create pointer to command and give it a command.
-     Command* command = parser.getCommand();
-     // Pass dereferenced command and check for end of game.
-     finished = processCommand(*command);
-     // Free the memory allocated by "parser.getCommand()"
-     //   with ("return new Command(...)")
-     delete command;
- }
- cout << endl;
- cout << "end" << endl;
-} */
 
 /* print the welcome message */
 string ZorkUL::printWelcome() {
@@ -136,25 +111,6 @@ string ZorkUL::printHelp() {
     return "\nhelp:\n\tyou must reach The Terminus to win the game  :)\n\tif you run out of health and/or resilience, you lose  :(\n\n\tthe valid inputs are the buttons on this screen.\n\tclick the buttons to carry out the action. \n\nbuttons:\n\tdirectional buttons: up, down, left, right\n\tteleport: from current room to another room\n\tcharacter info: displays the characters information\n\tmap: map of the rooms and their exits\n\troom items: displays the room items in that room\n\tcharacter items: displays the character items in that room";
 }
 
-/*void ZorkUL::goRoom(Command command) {
-    if (!command.hasSecondWord()) {
-        cout << "incomplete input"<< endl;
-        return;
-    }
-
-    string direction = command.getSecondWord();
-
-    // Try to leave current room.
-    Room* nextRoom = currentRoom->nextRoom(direction);
-
-    if (nextRoom == NULL)
-        cout << "underdefined input"<< endl;
-    else {
-        currentRoom = nextRoom;
-        cout << currentRoom->longDescription() << endl;
-    }
-} */
-
 /* teleports you to another room */
 string ZorkUL::teleport() {
     currentRoom = &rooms.at((int) rand() % rooms.size());
@@ -170,7 +126,6 @@ string ZorkUL::teleport() {
 string ZorkUL::map() {
     string map;
     string spaces = "                                 "; // spacing to align chambers in map
- // string s =      "                                                                                         ";
     string link = "\n                                                                          |                        ";
 
     map += "The Burren Abyss map:\n";
@@ -185,13 +140,10 @@ string ZorkUL::map() {
 
 /* go command to enter another room, if there is an exit in that direction */
 string ZorkUL::go(string direction) {
-    //Make the direction lowercase
-    //transform(direction.begin(), direction.end(), direction.begin(),:: tolower);
-    //Move to the next room
     Room* nextRoom = currentRoom->nextRoom(direction);
 
     if (nextRoom == NULL) {
-        return "no exit that way.";
+        return "\nno exit that way.";
     } else {
         currentRoom = nextRoom;
         return currentRoom->longDescription();
