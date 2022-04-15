@@ -13,21 +13,20 @@ Item::Item(string inDescription, int inWeightGrams, float inValue){
     this->value = inValue;
 }
 
-/* initializer list ,  copy constructor */
+/* Initializer list ,  copy constructor */
 Item::Item(string inDescription){
     this->description = inDescription;
     this->weightGrams = 1;
     this->value = 1;
 }
 
-/*Operator Overloading */
+/* Operator Overloading */
 bool Item::operator==(Item &i){
-    int test = 0;
-
+    int t = 0;
     if(this->getShortDescription() == i.getShortDescription()){
-        test = 1;
+        t = 1;
     }
-    return test;
+    return t;
 }
 
 /* set the weight */
@@ -51,10 +50,17 @@ int Item::getWeight(){
     return weightGrams;
 }
 
+/* get the value */
+float Item::getValue(){
+    return value;
+}
+
+/* return the short description */
 string Item::getShortDescription(){
     return description;
 }
 
+/* return the long description */
 string Item::getLongDescription(){
     return description;
 }
