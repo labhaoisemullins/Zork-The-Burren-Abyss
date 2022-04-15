@@ -39,7 +39,6 @@ public:
     int findItemPos(Item item);
     void removeItem(Item item);
     bool isOverloaded(float maxWeight);
- //   void addItem(string itemDescription);
     int getResilience();
     void setResilience(int resilience);
     void decrementResilience();
