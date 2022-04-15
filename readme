@@ -1,0 +1,86 @@
+  CS4076 EDP Project
+  Name:         Labhaoise Mullins
+  Student ID:   20266928
+  Project name: The Burren Abyss
+
+
+You must reach the Terminus in the cave without running out of health and/or resilience.
+You lose the game if you have ran out of health and/or resilience.
+You win the game if you reach The Terminus of the cave.
+
+How to play The Burren Abyss game:
+    - directional buttons (up, down, left, right) -> moves you to a room in that direction (if there is an exit)
+    - teleport button -> teleports you from your current room to another room
+    - character info button -> displays the character ("Caveman")'s information
+    - help button -> displays information on how to play the game
+    - map button -> displays the map of the cave
+    - room items -> displays the room items that are in the current room (if there are any)
+    - character items -> displays the character items that are in the current room (if there are any)
+    - health stats are visible on the top left of the screen
+    - resilience stats are visible under the health stats on the left-hand side of the screen
+    - items will be displayed on the left-hand side of the screen also
+
+  Header files:
+       - character.h
+       - command.h
+       - commandwords.h
+       - item.h
+       - mainwindow.h
+       - room.h
+       - weapon.h
+       - zorkul.h
+
+  Source files:
+       - character.cpp
+       - command.cpp
+       - commandwords.cpp
+       - item.cpp
+       - main.cpp
+       - mainwindow.cpp
+       - room.cpp
+       - weapon.cpp
+       - zorkul.cpp
+
+  UI file:
+    - mainwindow.ui
+
+At the start of every file, there is a block comment.
+Which contains my student id and the filename.
+
+C++ Assessment Criteria: Implemented c++ concepts
+
+* Every header file includes inclusion guards
+
+* Access specifiers
+    - the header files include private, public and private slots (qt specific extension to c++)
+
+* Inheritance
+    - example: weapon.h file; weapon inherits from item
+
+* Friendship
+    - example: character.h file; mainwindow is a friend class of character
+
+* Templates
+    - used in mainwindow.h file
+
+* Destructors
+    - mainwindow.cpp file; deletes ui;
+
+* Pointers
+    - zorkul.cpp file; creating the rooms (*one, *two etc.)
+    - room.cpp file; (this->description = description;)
+
+* Operator Overloading
+    - example: item.cpp file
+
+* Vectors
+    - vector: character.h file; vector<Item> viewItems();
+
+* Namespaces
+    - example: zorkul.cpp file; using namespace std;
+
+* Copy constructors
+    - example: item.cpp file; gives specified values to variables
+
+* Initializer lists
+    - example: character.cpp file; initialises description, resilience and health.
