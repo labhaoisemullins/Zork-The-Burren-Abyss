@@ -36,10 +36,7 @@ public:
     string longDescription();
     Room* nextRoom(string direction);
     void addItem(Item *inItem);
-    void addItem(Item &inItem);
     string displayItems();
-    int isItemInRoom(string inString);
-    void removeItemFromRoom(int location);
     void removeItem(Item item);
     vector<Item> viewItems();
     Item findItem(Item item);
