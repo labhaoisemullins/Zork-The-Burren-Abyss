@@ -9,7 +9,6 @@
 #define ZORKUL_H_
 
 #include "command.h"  // include command header file
-//#include "parser.h" // no parser file anymore
 #include "room.h"     // include room header file
 #include "item.h"     // include item header file
 #include "weapon.h"   // include weapon header file
@@ -23,11 +22,9 @@ using namespace std;   // namespace
 class ZorkUL {
 /* access specifier: only within the class */
 private:
-    //Parser parser;   // no parser file anymore
+    void createRooms();
     vector<Room> rooms;
     Room *currentRoom;
-    void createRooms();
-    bool processCommand(Command command);
     void goRoom(Command command);
     void createItems();
     void displayItems();
@@ -35,14 +32,12 @@ private:
 /* access specifier: accessible from outside the class */
 public:
     ZorkUL();
-  //void play();
     string printWelcome();
     string printHelp();
     string printEnd();
-    string go(string direction);
     string teleport();
     string map();
-    string viewCharacterInfo();
+    string go(string direction);
     string viewItems();
     Room getCurrentRoom();
 };
