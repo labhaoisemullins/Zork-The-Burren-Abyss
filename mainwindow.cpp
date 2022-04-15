@@ -6,8 +6,6 @@
 
 #include "mainwindow.h"     // include mainwindow header file
 #include "ui_mainwindow.h"  // include mainwindow ui header file
-//#include "initialwindow.h"
-//#include "initialwindow.h"
 
 #include <algorithm>
 
@@ -21,7 +19,6 @@ mainwindow::mainwindow(QWidget *parent) :
     QMainWindow(parent), ui(new Ui::mainwindow){
     ui->setupUi(this);
 
-//    ui->textEdit_->setTextColor(QColor("purple"));   // set items color to purple
     ui->textEdit_3->setTextColor(QColor("orange")); // set health stats color to orange
     ui->textEdit_2->setTextColor(QColor("blue"));   // set resilience stats color blue
     ui->textEdit_->append(QString::fromStdString(zork->printWelcome() + "\n"));
@@ -30,63 +27,65 @@ mainwindow::mainwindow(QWidget *parent) :
 }
 
 /* Destructor */
-mainwindow::~mainwindow(){ delete ui; }
+mainwindow::~mainwindow(){ 
+    delete ui; 
+}
 
-/** push button 1: direction - down */
-void mainwindow::on_pushButton_clicked(){
+/* push button 1: direction - down */
+void mainwindow::on_pushButton__clicked(){
     goRoom("down");
 }
 
-/** push button 2: direction - left */
+/* push button 2: direction - left */
 void mainwindow::on_pushButton_2_clicked(){
     goRoom("left");
 }
 
-/** push button 3: direction - up */
+/* push button 3: direction - up */
 void mainwindow::on_pushButton_3_clicked(){
     goRoom("up");
 }
 
-/** push button 4: direction - right */
+/* push button 4: direction - right */
 void mainwindow::on_pushButton_4_clicked(){
     goRoom("right");
 }
 
-/** push button 5: teleports to another room */
+/* push button 5: teleports to another room */
 void mainwindow::on_pushButton_5_clicked(){
     goRoom("teleport");
 }
 
-/** push button 6: character information is displayed */
+/* push button 6: character information is displayed */
 void mainwindow::on_pushButton_6_clicked(){
     ui->textEdit_->append(QString::fromStdString(character.longDescription()));
 }
 
-/** push button 7: help information is displayed */
+/* push button 7: help information is displayed */
 void mainwindow::on_pushButton_7_clicked(){
     ui->textEdit_->append(QString::fromStdString(zork->printHelp()));
 }
 
-/** push button 8: map information is displayed */
+/* push button 8: map information is displayed */
 void mainwindow::on_pushButton_8_clicked(){
     ui->textEdit_->append(QString::fromStdString(zork->map()));
 }
 
-/** push button 9: items in the current room are displayed */
+/* push button 9: items in the current room are displayed */
 void mainwindow::on_pushButton_9_clicked(){
     putInInventory = true;
     vector<Item> items = zork->getCurrentRoom().viewItems();
     listItems(items, "room");
 }
 
-/** push button 10: items belonging to the character in the current room are displayed */
+/* push button 10: items belonging to the character in the current room are displayed */
 void mainwindow::on_pushButton_10_clicked(){
     putInInventory = false;
     vector<Item> items = character.viewItems();  //vector
     listItems(items, "character");
 }
 
-/** list widget: displays the items (character/room) */
+/* list widget: displays the items (character/room) */
 void mainwindow::on_listWidget_itemDoubleClicked(QListWidgetItem*item){  //
     string description = item->text().toStdString();
     Item i = *new Item(description);
@@ -95,7 +94,6 @@ void mainwindow::on_listWidget_itemDoubleClicked(QListWidgetItem*item){  //
     if (putInInventory){
         Room r = zork->getCurrentRoom();
         Item m = r.findItem(i);
-        //character.itemsInCharacter.push_back(m);
         addItem(character.itemsInCharacter, m);
         character.addItem(&m);
         r.removeItem(m);
@@ -110,6 +108,7 @@ void mainwindow::on_listWidget_itemDoubleClicked(QListWidgetItem*item){  //
     }
 }
 
+/* add the items to the list widget */
 void mainwindow::addItemsToListWidget(vector<Item> items){
     ui->listWidget->clear();
 
@@ -132,6 +131,7 @@ void mainwindow::addItemsToListWidget(vector<Item> items){
     }
 }
 
+/* disable all buttons and list widgets when game finishes */
 void mainwindow::endGameState(string m1, string m2){
     ui->pushButton_->setEnabled(false);
     ui->pushButton_2->setEnabled(false);
@@ -153,12 +153,14 @@ void mainwindow::endGameState(string m1, string m2){
     ui->textEdit_3->setText(QString::fromStdString(displayResilience()));
 }
 
+/* check if caveman is carrying too much weight */
 void mainwindow::overloadedCheck(){
     if (character.isOverloaded(4.0)){
         endGameState("been overloaded with too much weight", "lost");
     }
 }
 
+/* decrement resilience when you go to another room */
 void mainwindow::goRoom(string direction){
     if (character.health != 0 && character.resilience >= 0){
         character.decrementResilience();
@@ -182,7 +184,7 @@ void mainwindow::listItems(vector<Item> items, QString description){
     if (!items.empty()){
         addItemsToListWidget(items);
     }else{
-        ui->textEdit_->append("no " + description + " items found.\n");
+        ui->textEdit_->append("\nno " + description + " items found.\n");
     }
 }
 
@@ -206,6 +208,7 @@ string mainwindow::displayHealth(){
     return health;
 }
 
+/* if the character has no health left, loses game */
 void mainwindow::printCharacterStats(){
     if (!(character.health > 0)){
         endGameState("ran out of health", "lost");
