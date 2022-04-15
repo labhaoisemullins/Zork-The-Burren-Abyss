@@ -4,11 +4,7 @@
  * Filename: main.cpp
 */
 
-//#include "initialwindow.cpp"    // include initialwindow source file
-//#include "initialwindow.h"      // include initialwindow header file
-//#include "ui_initialwindow.h"   // include initialwindow ui header file
 #include "mainwindow.h"        // include mainwindow header file
-//#include "ui_mainwindow.h"      // include mainwindow ui header file
 
 #include <QDialog>
 #include <QApplication>
@@ -20,29 +16,26 @@
 int main(int argc, char **argv){
     QApplication app(argc, argv);
 
-  //  QDialog initialwindow;
-  //  initialwindow.show();
-  //  initialwindow start;
-  //  initialwindow quit;
-
-    QDialog initialwindow;
-    QPushButton *start = new QPushButton{"start"};
+    QDialog initialwindow;  // QDialog object called initialwindow
+   
+/* using qt signal and slots , connect(object1,signal,object2,slot) */
+    QPushButton *start = new QPushButton{"start"};  // start button, starts game and opens mainwindow
     QObject::connect(start, &QPushButton::clicked, &initialwindow, &QDialog::accept);
-    QPushButton *quit = new QPushButton{"quit"};
+    QPushButton *quit = new QPushButton{"quit"};    // quit button, exits screen
     QObject::connect(quit, &QPushButton::clicked, &initialwindow, &QDialog::reject);
 
-    QVBoxLayout *dialog_layout = new QVBoxLayout{&initialwindow};
-        dialog_layout->addWidget(new QLabel{"          start game        "});
-        dialog_layout->addWidget(start);
-        dialog_layout->addWidget(quit);
+    QVBoxLayout *dialog_layout = new QVBoxLayout{&initialwindow};  // box for start and quit button
+        dialog_layout->addWidget(new QLabel{"          The Burren Abyss          "});
+        dialog_layout->addWidget(start);    // add start button to box
+        dialog_layout->addWidget(quit);     // add quit button to box
 
-    mainwindow window;
+    mainwindow window;    // mainwindow object called window
 
     if (initialwindow.exec() == QDialog::Accepted){
             qDebug() << "Accepted";
-            window.show();
+            window.show();  // start game if start button is clicked
         }else
-            qDebug() << "Rejected";
+            qDebug() << "Rejected";   // end game if quit button is clicked
 
-        return app.exec();
+        return app.exec();   // start application/game
     }
