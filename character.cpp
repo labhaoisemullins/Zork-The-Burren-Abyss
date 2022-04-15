@@ -84,14 +84,6 @@ int Character::findItemPos(Item item){
     }
 }
 
-/* display the characters information
-string Character::viewCharacterInfo(){
-    string output = "";
-    output += longDescription();
-    output += "\ncarried weight: " + to_string(carriedWeight) + "g.";
-    return output;
-}*/
-
 /* remove the item */
 void Character::removeItem(Item item) {
     itemsInCharacter.erase(itemsInCharacter.begin() + findItemPos(item));
@@ -119,6 +111,7 @@ void Character::setResilience(int resilience){
 /* decrement resilience */
 void Character::decrementResilience(){
     resilience--;
+    
 /* increase resilience to 6(*) if health has more than one (+) */
     if (resilience < 0 && health > 1){
         setResilience(6);  // 6 *
