@@ -11,16 +11,16 @@
 #include <QMainWindow>
 #include <QListWidget>
 #include <QDialog>
+
 #include <vector>
 using std::string;
 #include <string>
 
-//#include "initialwindow.h"
 #include "zorkul.h"     // include zorkul header file
 #include "character.h"  // include character header file
 
 namespace Ui {          // namespace
-class mainwindow;
+    class mainwindow;
 }
 
 /* Inheritance */
@@ -29,25 +29,21 @@ class mainwindow : public QMainWindow{
 
     friend class Room;       // friend- allows room to access private members of mainwindow
     friend class Character;  // friends- allows character to access private members of mainwindow
-  //  friend class initialwindow;
 
 public:
     explicit mainwindow(QWidget *parent = nullptr);
     ~mainwindow();  // Destructor
 
-    void overloadedCheck();
-    void allRoomItemsCollectedTest();
-    void disableAllButtons();
     void addItemsToListWidget(vector<Item> item);   // vector
+    void endGameState(string m1, string m2);
+    void overloadedCheck();
     string displayResilience();
     string displayHealth();
     void printCharacterStats();
-    void endGameState(string m1, string m2);
 
 /* access specifier: accessible only within the class, room class and the character class */
 private:
     Ui::mainwindow *ui;
-
     ZorkUL *zork = new ZorkUL();
     Character character = *new Character("Caveman");
     bool putInInventory;
@@ -55,7 +51,7 @@ private:
     void listItems(vector<Item> items, QString description);
 
 private slots:
-    void on_pushButton_clicked();       // down
+    void on_pushButton__clicked();       // down
     void on_pushButton_2_clicked();     // left
     void on_pushButton_3_clicked();     // up
     void on_pushButton_4_clicked();     // right
