@@ -11,8 +11,8 @@
 Character::Character(string description){
     itemsInCharacter.empty();
     this->description = description;
-    resilience = 5;
-    health = 5;
+    resilience = 5;   // set resilience stats to 5 at start of game
+    health = 3;      // set health stats to 3 at start of game
 }
 
 void Character::addItem(Item *item){    // points to variable item
@@ -25,10 +25,12 @@ void Character::addItem(Item &item){   // address of the variable item
     carriedWeight += item.getWeight();
 }
 
+/* view the character items */
 vector<Item> Character::viewItems(){
     return itemsInCharacter;
 }
 
+/* return the short description */
 string Character::shortDescription(){
     return this->description;
 }
@@ -76,11 +78,12 @@ Item Character::findItem(Item item){
     }
 }
 
+/* find the position of the item */
 int Character::findItemPos(Item item){
     for (unsigned int i = 0; i < (unsigned int)itemsInCharacter.size(); i++){
         if (itemsInCharacter[i] == item){
             return i;
-    }
+        }
     }
 }
 
