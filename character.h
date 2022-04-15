@@ -30,17 +30,16 @@ private:
 /* access specifier: accessible from outside the class */
 public:
     Character(string description);
+    void addItem(Item *item);
+    void addItem(Item &item);
+    vector<Item> viewItems();      // vector
     string shortDescription();
     string longDescription();
-    vector<Item > viewItems();      // vector
     Item findItem(Item item);
     int findItemPos(Item item);
     void removeItem(Item item);
     bool isOverloaded(float maxWeight);
-    //string viewCharacterInfo();
-    void addItem(string itemDescription);
-    void addItem(Item *item);
-    void addItem(Item &item);
+ //   void addItem(string itemDescription);
     int getResilience();
     void setResilience(int resilience);
     void decrementResilience();
