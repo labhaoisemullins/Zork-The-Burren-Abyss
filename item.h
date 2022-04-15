@@ -18,22 +18,21 @@ class Item{
 /* access specifier: accessible only within the class */
 private:
     string description;
-    string longDescription;
     int weightGrams;
     float value;
+    string longDescription;
 
 /* access specifier: accessible from outside the class */
 public:
-  //Item();
-    Item(string description, int weightGrams, float value);
-    Item(string description); // copy constructor
+    Item(string inDescription, int inWeightGrams, float inValue);
+    Item(string inDescription); // copy constructor
+    bool operator==(Item &i);   // operator overloading
+    void setWeight(int inWeightGrams);
+    void setValue(float inValue);
+    int getWeight();
+    float getValue();
     string getShortDescription();
     string getLongDescription();
-    bool operator==(Item &i);   // operator overloading
-    int getWeight();
-    void setWeight(int inWeightGrams);
-    float getValue();
-    void setValue(float inValue);
 };
 
 #endif /* ITEM_H_ */
